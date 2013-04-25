@@ -3,8 +3,10 @@
         xmlns:rim="http://www.blackberry.com/ns/widgets"
         version="1.0.0.5" id="daub" xml:lang="en">
   <author href="http://www.example.com/"
-          rim:copyright="Copyright 2013 Edgard Zavarezzi">EdgardZ</author>
+          rim:copyright="Copyright 2013 ">BRAPPS</author>
   <name>Daub</name>
-  <content src="index.html"/>
+  <content src="index.html">
+      <rim:background src="background.html" runOnStartup="true" />
+  </content>
   <feature id="blackberry.identity" required="true" version="1.0.0.0"/>
 </widget>
