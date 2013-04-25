@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Daub</title>
+  </head>
+  <body>
+    <p>Daub</p>
+    <script src="local:///chrome/webworks.js" type="text/javascript"></script>
+    <script>
+      function ready() {
+        var ele = document.createElement("div");
+        ele.innerHTML = "uuid: " + blackberry.identity.uuid;
+        document.documentElement.appendChild(ele);
+      }
+      window.addEventListener("load", function(e) {
+        document.addEventListener("webworksready", ready);
+      }, false);
+    </script>
+  </body>
+</html>
