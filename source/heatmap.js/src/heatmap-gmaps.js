@@ -137,7 +137,7 @@ HeatmapOverlay.prototype.setDataSet = function(data){
     me.latlngs = [];
    
     while(dlen--){	
-    	latlng = new google.maps.LatLng(d[dlen].lat, d[dlen].lng);
+    	latlng = new google.maps.LatLng(d[dlen].latitude, d[dlen].longitude);
         
         if(!currentBounds.contains(latlng)) { 
             continue; 
