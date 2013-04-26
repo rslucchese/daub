@@ -8,6 +8,12 @@
   <content src="index.html">
       <rim:background src="background.html" runOnStartup="true" />
   </content>
+  <icon src="images/icon-114.png"/>
+  <rim:splash src="images/bb10-splash-portrait-768x1280.png"/>
+  <feature id="blackberry.app">
+        <param name="orientation" value="portrait" />
+        <param name="backgroundColor" value="0x000000" />
+  </feature>
   <access uri="*" subdomains="true"></access>
   <feature id="blackberry.identity" required="true" version="1.0.0.0"/>
 </widget>
