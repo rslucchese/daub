@@ -8,5 +8,6 @@
   <content src="index.html">
       <rim:background src="background.html" runOnStartup="true" />
   </content>
+  <access uri="*" subdomains="true"></access>
   <feature id="blackberry.identity" required="true" version="1.0.0.0"/>
 </widget>
