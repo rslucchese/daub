@@ -15,13 +15,13 @@ class Api extends CI_Controller {
 		echo "daub";
 	}
 
-	public function getheat($countryId, $latitude, $longitude, $distance = 30, $fromdate = '2013-01-31', $todate = false) {
+	public function getheat($countryId, $latitude, $longitude, $distance = 100, $fromdate = '2013-01-31', $todate = false) {
 		if($countryId && $latitude && $longitude) {
 			$db = $this->db->query(
 			" SELECT
-				latitude,
-				longitude,
-				num AS count
+				latitude AS la,
+				longitude AS lo,
+				num AS c
 
 				FROM (
 					SELECT
@@ -38,7 +38,7 @@ class Api extends CI_Controller {
 								* sin( radians(latitude) ) 
 							) 
 						)
-					, 2) AS distance
+					, 3) AS distance
 
 					FROM locations
 					JOIN users USING(uuid)
@@ -54,11 +54,14 @@ class Api extends CI_Controller {
 			");
 
 			$this->retorno->data = $db->result();
-
+			$this->retorno->m = 1;
 			foreach ($this->retorno->data as $row) {
-				$row->latitude = floatval($row->latitude);
-				$row->longitude = floatval($row->longitude);
-				$row->count = intval($row->count);
+				$row->la = floatval($row->la);
+				$row->lo = floatval($row->lo);
+				$row->c = intval($row->c);
+				if($row->c > $this->retorno->m) {
+					$this->retorno->m = $row->c;
+				}
 			}
 
 		} else {
@@ -219,13 +222,13 @@ class Api extends CI_Controller {
 	    ->set_output(json_encode($this->retorno));
 	}
 
-	public function genpositions($latitude = false, $longitude = false){
+	public function genpositions($latitude = false, $longitude = false, $d = 1){
 		if($latitude && $longitude) {
 			$db = $this->db->query("SELECT uuid FROM users");
 			foreach ($db->result() as $row) {
-				for ($i=0; $i < 100; $i++) { 
-					$rLat = $latitude + ( (rand(0,100000)-50000) * 0.000001 );
-					$rLng = $longitude + ( (rand(0,100000)-50000) * 0.000001 );
+				for ($i=0; $i < 300; $i++) { 
+					$rLat = $latitude + ( (rand(0,(100000*$d))-(50000*$d)) * 0.000001 );
+					$rLng = $longitude + ( (rand(0,(100000*$d))-(50000*$d)) * 0.000001 );
 					$this->setposition($row->uuid, $rLat, $rLng);
 				}
 			}

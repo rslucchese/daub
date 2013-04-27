@@ -126,7 +126,7 @@ HeatmapOverlay.prototype.setDataSet = function(data){
     var me = this,
         currentBounds = me.map.getBounds(),
         mapdata = {
-            max: data.max,
+            max: data.m,
             data: []
         },
         d = data.data,
@@ -137,15 +137,15 @@ HeatmapOverlay.prototype.setDataSet = function(data){
     me.latlngs = [];
    
     while(dlen--){	
-    	latlng = new google.maps.LatLng(d[dlen].latitude, d[dlen].longitude);
+    	latlng = new google.maps.LatLng(d[dlen].la, d[dlen].lo);
         
         if(!currentBounds.contains(latlng)) { 
             continue; 
         }
 
-    	me.latlngs.push({latlng: latlng, c: d[dlen].count});
+    	me.latlngs.push({latlng: latlng, c: d[dlen].c});
     	point = me.pixelTransform(projection.fromLatLngToDivPixel(latlng));
-    	mapdata.data.push({x: point.x, y: point.y, count: d[dlen].count});
+    	mapdata.data.push({x: point.x, y: point.y, count: d[dlen].c});
     }
     me.heatmap.clear();
     me.heatmap.store.setDataSet(mapdata);

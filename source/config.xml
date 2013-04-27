@@ -14,6 +14,11 @@
         <param name="orientation" value="portrait" />
         <param name="backgroundColor" value="0x000000" />
   </feature>
+  <rim:permissions>
+    <rim:permit>read_device_identifying_information</rim:permit>
+    <rim:permit>read_geolocation</rim:permit>
+  </rim:permissions>
   <access uri="*" subdomains="true"></access>
+  <access uri="http://ec2-23-20-96-11.compute-1.amazonaws.com" subdomains="true"></access>
   <feature id="blackberry.identity" required="true" version="1.0.0.0"/>
 </widget>
