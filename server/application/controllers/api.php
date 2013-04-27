@@ -38,7 +38,7 @@ class Api extends CI_Controller {
 								* sin( radians(latitude) ) 
 							) 
 						)
-					, 3) AS distance
+					, 2) AS distance
 
 					FROM locations
 					JOIN users USING(uuid)
@@ -54,13 +54,13 @@ class Api extends CI_Controller {
 			");
 
 			$this->retorno->data = $db->result();
-			$this->retorno->m = 1;
+			$this->retorno->m = 5;
 			foreach ($this->retorno->data as $row) {
 				$row->la = floatval($row->la);
 				$row->lo = floatval($row->lo);
 				$row->c = intval($row->c);
 				if($row->c > $this->retorno->m) {
-					$this->retorno->m = $row->c;
+					//$this->retorno->m = $row->c;
 				}
 			}
 
