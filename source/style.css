@@ -15,9 +15,8 @@ h1 {
 #heatmapArea {
 	position:relative;
 	float:left;
-	width:766px;
-	height:1278px;
-	border:1px dashed black;
+	width:768px;
+	height:1280px;
 }
 #configArea {
 	position:relative;
